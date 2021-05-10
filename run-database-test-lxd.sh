@@ -4,8 +4,8 @@ set -e
 
 base="$(readlink -f "$0")"
 
-lxc stop --force database-test || true
-lxc delete database-test || true
+lxc stop --force database-test 2>/dev/null || true
+lxc delete database-test 2>/dev/null || true
 lxc launch ubuntu:20.10 database-test
 lxc config device add database-test source disk source=`pwd` path=/mnt/source
 lxc restart database-test
